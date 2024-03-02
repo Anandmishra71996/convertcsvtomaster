@@ -7,10 +7,16 @@ interface MulterRequest extends Request {
 
 export const uploadFile = async (req: Request, res: Response) => {
   const file = (req as MulterRequest).file;
+  console.log(file);
   await redisClient.connect();
-  await redisClient.hSet("process-data", {
-    fileName: "fileName",
-  });
+  let date = new Date();
+  let dataToSave = {
+    fileName: file.filename,
+    date: date,
+    path: file.path,
+    mimetype: file.mimetype,
+  };
+  await redisClient.lPush("process-data", JSON.stringify(dataToSave));
   return res.status(200).json({
     success: true,
     message: "file uploaded successfully",

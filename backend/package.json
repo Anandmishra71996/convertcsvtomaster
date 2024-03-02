@@ -4,7 +4,8 @@
   "description": "allows to convert any csv or jason file to specified schema",
   "main": "app.js",
   "scripts": {
-    "dev": "nodemon src/app.ts",
+    "dev": "nodemon -L src/app.ts",
+    "testData": "nodemon uploadData.ts",
     "start": "node build/app.js",
     "tsc": "tsc",
     "build": "tsc"
@@ -13,6 +14,7 @@
   "license": "ISC",
   "dependencies": {
     "@types/multer": "^1.4.11",
+    "csv-parser": "^3.0.0",
     "dotenv": "^16.4.2",
     "express": "^4.18.2",
     "mongoose": "^8.1.1",

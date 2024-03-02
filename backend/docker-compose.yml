@@ -6,6 +6,8 @@ services:
     build: ./
     ports:
       - 5000:5000
+    volumes:
+      - ./src:/usr/app/src
   redis:
     container_name: redis-container
     image: redis:latest
